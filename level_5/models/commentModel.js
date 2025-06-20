@@ -11,12 +11,12 @@ async function getCommentForPost(postId) {
 }
 
 async function getCommentById(id) {
-    const res = await pool.query('select * from comment where id=$1', [id]);
+    const res = await pool.query('select * from comments where id=$1', [id]);
     return res.rows[0];
 }
 
 async function updateComment(id, content) {
-    const res = await pool.query('update comments set content=$1 from comments where id=$2 returning *', [content, id]);
+    const res = await pool.query('update comments set content=$1 where id=$2 returning *', [content, id]);
     return res.rows[0];
 }
 
